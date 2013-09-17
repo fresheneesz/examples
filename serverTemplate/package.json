@@ -1,7 +1,7 @@
 {
-  "name": "entefyInstaller",
+  "name": "installer",
   "version": "0.0.1",
-  "readme": "This allows npm install to install entefy. Use `npm install` from the git directory to install the application. Don't add any dependencies into this package.json file, instead add them to installComponents/package.json .",
+  "readme": "This allows npm install to install the server project. Use `npm install` from the git directory to install the application. Don't add any dependencies into this package.json file, instead add them to installComponents/package.json .",
   "dependencies": {
   },
   "scripts": {
