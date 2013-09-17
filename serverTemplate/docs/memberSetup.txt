@@ -1,0 +1,130 @@
+-- Logging into AWS console --
+
+A. Someone's gotta create a user id *and* a new password for you
+B. Go to https://--------.signin.aws.amazon.com/console
+C. Log in with the credentials whoever made your user set up for you
+
+-- Setup a user --
+
+A. Setup the user - someone who already has a user has to do this
+    1. Create the user - useradd <user>
+    2. Setup user's keys
+        a. Get a public key from the new member (ideally). To get a proper public key:
+            I.   This will generate the file <user> and <user>.pub:
+                   ssh-keygen -b 1024 -f <user> -t rsa
+            II.  The public key is <user>.pub is the public key
+            III. For windows: convert the private key to a ppk file
+                i.   Open PuttyGen
+                ii.  load the private key
+                iii. give a password
+                iv.  save the private key (as a ppk file)
+        b. Setup user's public key on the server
+            I.  cd ~<user>
+            II.   mkdir .ssh
+            III.  chmod 700 .ssh
+            VI.   chown <user>:<user> .ssh
+            V.    cat /tmp/<user>.pub >> .ssh/authorized_keys
+            VI.   chmod 600 .ssh/authorized_keys
+            VII.  chown <user>:<user> .ssh/authorized_keys
+        c. Setup public key on bitbucket
+            I.    Log into bitbucket
+            II.   Manage Account -> SSH Keys
+            III.  Add Key (name the key and paste the public key)
+    2. Add user to group: sudo usermod -a -G wheel <user>
+    3. Give user sudo password: sudo passwd <user>
+B. Configure key locally
+  For mac/linux:
+    1. ssh-add -K <path-to-key>
+  For windows:
+    1. Install PuTTY package (which should include pageant.exe and plink.exe)
+    2. Load up your ppk key into pageant,
+        either:
+            i. Double-click on the ppk file and put in its password
+        or:
+            i. Run pageant,
+            ii. Right-click on the icon in the taskbar, and Add Key
+            iii. Choose your ppk key, and put in its password
+    3. using PuTTY
+      a. go to SSH->Auth and enable agent forwarding
+      b. save that setting
+C. Setup mongodb credentials:
+    * run /opt/mongodb/bin/mongo
+    * use perfund
+    * db.addUser({user:"<user>", pwd:"<password>", roles:['readWrite']})
+
+-- accessing the ec2 instance --
+
+A. Make sure you've done the section "Configure key locally"
+
+B. SSH into ec2-54-215-133-58.us-west-1.compute.amazonaws.com (this comes from your AWS console in N. California)
+     Mac/linux) ssh <hostname>
+     Windows) using PuTTY
+      a. enter the hostname
+      b. Make sure you did "Configure your key"
+      c. You can also add a username in Data (so you don't have to type it in every time). 
+      d. Save your session, then "Open" an ssh connection.
+
+-- accessing the perfund git repo --
+
+A. Ensure you have done "Configure your key"
+  Windows) 
+    1. Add the environment variable GIT_SSH and put the path to plink.exe in the PuTTY package as the value
+    2. Start putty with agent forwarding enabled under SSH->Auth
+
+B. Create a base folder called "perfund"
+
+C. Pull the repository into a folder called "perfund-server"
+    * git clone git@bitbucket.org/perfund/perfund-server.git perfund-server
+
+2. Create folder hierarchy:
+  A. create an unversioned project folder called "perfund"
+  B. pull the newFrame folder from git into the "perfund" folder
+
+-- IntelliJ Setup --
+
+A. Install Webstorm 6 (or latest)
+B. Settings->Version Control:      Add git repositories
+C. Settings->Version Control->Git: Set SSH executable to Native
+D. Assorted options:
+    1. Code Style -> General:          Unix line feeds
+    2. Code Style -> General:          Use tab character: off
+        * Also set this explicitly for javascript, and everything else you might use (kinda stupid you need to do this)
+    3. Inspections -> Javascript -> Code style issues -> unterminated statement: off
+    4. Editor -> Smart Keys -> Insert pair bracket
+    5. Editor -> Smart Keys -> Reformat on paste: none
+    6. Editor -> Smart Keys -> Smart Indent
+    7. Editor -> Allow placement of caret after end of line
+    8. Editor -> Allow placement of caret inside tabs
+
+E. Install Node.js plugin
+F. Configure Node.js source
+
+-- MongoDB Setup --
+
+A. Download mongo from http://www.mongodb.org/downloads
+B. Unzip it to some directory
+C. Run .../bin/mongod --journal
+  * journaling is important
+D. (optional) Download and install robomongo - a mongo GUI tool - http://robomongo.org/
+
+-- Setup Headless Environment --
+
+A. Install Vagrant - http://downloads.vagrantup.com/
+B. Virtual Box - https://www.virtualbox.org/wiki/Downloads
+C. Run Virtual Box (might take a minute or so to load)
+D. cd to your unversioned perfund directory of choice
+E. run commands (note some may take a while):
+  1. vagrant box add perfund http://developer.nrel.gov/downloads/vagrant-boxes/CentOS-6.4-x86_64-v20130427.box
+  2. vagrant init perfund
+  3. vagrant up
+  4. On Mac: vagrant ssh
+     On Windows: Use putty to log into localhost with user 'vagrant' and password 'vagrant'
+
+
+__Changes__
+
+* Changed "accessing the ec2 git repo
+ from:
+    * git clone ssh://<user>@ec2-54-215-133-58.us-west-1.compute.amazonaws.com/mnt/ebs/perfund/perfund.git git
+ to:
+    * the bitbucket url

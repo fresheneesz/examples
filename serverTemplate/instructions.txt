@@ -1,17 +1,30 @@
--- Instalation --
+-- Installation --
 
-1. install node-v0.10.3-x64
-
-2. Create folder hierarchy:
-  A. create an unversioned project folder called "node"
-  B. pull the newFrame folder from SVN into the "node" folder
-
-3. run node node/newFrame/install.js
-
-4. fill in your configuration file at node/configuration.js
+1. install v0.10.16-x64
+2. Create a folder called 'nodeBackend'
+3. clone the repository into a folder called 'git'
+4. cd git/
+5. npm install
+6. fill in your configuration file in nodeBackend/configuration.js
 
 
--- Installing a new module --
+-- Installing a new module or new version of a module --
 
-1. add the module name to the list of modules in node/newFrame/install.js
-2. rerun node/newFrame/install.js
+1. Add the dependency to git/installComponents/package.json
+   * Use this form for git repositories: git+https://git@github.com/<owner>/<repoName>.git#<commitHashVersion>
+2. if updating a module, delete the relevant entry in perfund/git/installComponents/npm-shrinkwrap.json
+3. rerun nodeBackend/git/install.js
+
+-- Removing a module --
+
+1. delete the module entry from nodeBackend/git/installComponents/package.json
+2. delete the module entry from nodeBackend/git/installComponents/npm-shrinkwrap.json
+3. rerun nodeBackend/git/install.js
+
+-- Starting the webserver --
+1. Ensure you have permissions to overwrite the log files
+2. run starthttp
+
+-- Stopping the webserver --
+1. run stophttp
+2. (what do you do if you get the error: "Forever cannot find process with index: /var/www/http.js" ?)

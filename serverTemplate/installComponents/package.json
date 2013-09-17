@@ -1,0 +1,15 @@
+{
+  "name": "entefy",
+  "version": "0.0.1",
+  "dependencies": {
+    "fibers": "",
+    "moment": "",
+    "keygrip": "",
+    "sugar": "",
+    "validator": "",
+    "nodejsUtils": "git+https://git@github.com/fresheneesz/nodejsUtils.git#ad40b5aa3374f1414e436cf31e7e22a3f57261c0"
+  },
+  "scripts": {
+    "postinstall": "node git/postinstall.js"
+  }
+}
