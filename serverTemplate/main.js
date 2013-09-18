@@ -4,15 +4,15 @@ var Fiber = require('fibers')
 var http = require('http')
 var path = require("path")
 
+var es = require("database").es
 var config = require('config')
 
 var Logger = require("logger")
 var scriptPath = path.relative(require('rootpath')("."), __filename);
-Logger.init(scriptPath, config.port)
+Logger.initialize(scriptPath, config.port)
 
 var utils = require('utils')
 var route = require("router")
-var database = require("database")
 
 var logger = Logger()
 

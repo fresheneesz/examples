@@ -6,8 +6,13 @@
     "moment": "",
     "keygrip": "",
     "sugar": "",
+    "colors": "",
+    "proto":"",
     "validator": "",
-    "nodejsUtils": "git+https://git@github.com/fresheneesz/nodejsUtils.git#ad40b5aa3374f1414e436cf31e7e22a3f57261c0"
+    "elasticsearchclient":"",
+    "trimArguments": "git+https://git@github.com/fresheneesz/trimArguments.git#e69ed3ebdfe6cf055916ba6e3a1e4b28f696da6f",
+    "nodejsUtils": "git+https://git@github.com/fresheneesz/nodejsUtils.git#ad40b5aa3374f1414e436cf31e7e22a3f57261c0",
+    "deadunit":"git+https://git@github.com/fresheneesz/deadunit.git#3ac862e0c2646df969e5e5ea95ca975eba658869"
   },
   "scripts": {
     "postinstall": "node git/postinstall.js"

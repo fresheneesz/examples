@@ -9,7 +9,8 @@
     },
     "moment": {
       "version": "2.0.0",
-      "from": "moment@2.0.0"
+      "from": "moment@2.0.0",
+      "resolved": "https://registry.npmjs.org/moment/-/moment-2.0.0.tgz"
     },
     "keygrip": {
       "version": "0.2.2",
@@ -21,36 +22,113 @@
       "from": "https://registry.npmjs.org/sugar/-/sugar-1.3.8.tgz",
       "resolved": "https://registry.npmjs.org/sugar/-/sugar-1.3.8.tgz"
     },
+    "colors": {
+      "version": "0.6.2",
+      "from": "colors@0.6.2",
+      "resolved": "https://registry.npmjs.org/colors/-/colors-0.6.2.tgz"
+    },
+    "proto": {
+      "version": "1.0.4",
+      "from": "proto@1.0.4",
+      "resolved": "https://registry.npmjs.org/proto/-/proto-1.0.4.tgz",
+      "dependencies": {
+        "buildModules": {
+          "version": "1.0.0",
+          "from": "buildModules@git+https://git@github.com/fresheneesz/buildModules.git#2f50ea0830b0fa580c087b4bfa947de2e7b7d7c3",
+          "resolved": "git+https://git@github.com/fresheneesz/buildModules.git#2f50ea0830b0fa580c087b4bfa947de2e7b7d7c3",
+          "dependencies": {
+            "uglify-js": {
+              "version": "2.4.0",
+              "from": "uglify-js@2.4.0",
+              "resolved": "https://registry.npmjs.org/uglify-js/-/uglify-js-2.4.0.tgz",
+              "dependencies": {
+                "async": {
+                  "version": "0.2.9",
+                  "from": "async@0.2.9",
+                  "resolved": "https://registry.npmjs.org/async/-/async-0.2.9.tgz"
+                },
+                "source-map": {
+                  "version": "0.1.29",
+                  "from": "source-map@0.1.29",
+                  "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.1.29.tgz",
+                  "dependencies": {
+                    "amdefine": {
+                      "version": "0.0.8",
+                      "from": "amdefine@0.0.8",
+                      "resolved": "https://registry.npmjs.org/amdefine/-/amdefine-0.0.8.tgz"
+                    }
+                  }
+                },
+                "optimist": {
+                  "version": "0.3.7",
+                  "from": "optimist@0.3.7",
+                  "resolved": "https://registry.npmjs.org/optimist/-/optimist-0.3.7.tgz",
+                  "dependencies": {
+                    "wordwrap": {
+                      "version": "0.0.2",
+                      "from": "wordwrap@0.0.2",
+                      "resolved": "https://registry.npmjs.org/wordwrap/-/wordwrap-0.0.2.tgz"
+                    }
+                  }
+                },
+                "uglify-to-browserify": {
+                  "version": "1.0.1",
+                  "from": "uglify-to-browserify@1.0.1",
+                  "resolved": "https://registry.npmjs.org/uglify-to-browserify/-/uglify-to-browserify-1.0.1.tgz"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "validator": {
       "version": "1.5.1",
-      "from": "validator@"
+      "from": "validator@1.5.1",
+      "resolved": "https://registry.npmjs.org/validator/-/validator-1.5.1.tgz"
+    },
+    "elasticsearchclient": {
+      "version": "0.5.3",
+      "from": "https://registry.npmjs.org/elasticsearchclient/-/elasticsearchclient-0.5.3.tgz",
+      "resolved": "https://registry.npmjs.org/elasticsearchclient/-/elasticsearchclient-0.5.3.tgz"
+    },
+    "trimArguments": {
+      "version": "1.0.0",
+      "from": "trimArguments@git+https://git@github.com/fresheneesz/trimArguments.git#e69ed3ebdfe6cf055916ba6e3a1e4b28f696da6f",
+      "resolved": "git+https://git@github.com/fresheneesz/trimArguments.git#e69ed3ebdfe6cf055916ba6e3a1e4b28f696da6f"
     },
     "nodejsUtils": {
       "version": "0.0.1",
       "from": "nodejsUtils@git+https://git@github.com/fresheneesz/nodejsUtils.git#ad40b5aa3374f1414e436cf31e7e22a3f57261c0",
       "resolved": "git+https://git@github.com/fresheneesz/nodejsUtils.git#ad40b5aa3374f1414e436cf31e7e22a3f57261c0",
       "dependencies": {
-        "colors": {
-          "version": "0.6.2",
-          "from": "colors@0.6.2",
-          "resolved": "https://registry.npmjs.org/colors/-/colors-0.6.2.tgz"
-        },
         "resumer": {
           "version": "0.0.0",
-          "from": "resumer@0.0.0",
+          "from": "https://registry.npmjs.org/resumer/-/resumer-0.0.0.tgz",
           "resolved": "https://registry.npmjs.org/resumer/-/resumer-0.0.0.tgz",
           "dependencies": {
             "through": {
               "version": "2.3.4",
-              "from": "through@2.3.4",
+              "from": "https://registry.npmjs.org/through/-/through-2.3.4.tgz",
               "resolved": "https://registry.npmjs.org/through/-/through-2.3.4.tgz"
             }
           }
         },
         "stream-stream": {
           "version": "1.2.2",
-          "from": "stream-stream@1.2.2",
+          "from": "https://registry.npmjs.org/stream-stream/-/stream-stream-1.2.2.tgz",
           "resolved": "https://registry.npmjs.org/stream-stream/-/stream-stream-1.2.2.tgz"
+        }
+      }
+    },
+    "deadunit": {
+      "version": "0.3.0",
+      "from": "git+https://git@github.com/fresheneesz/deadunit.git#3ac862e0c2646df969e5e5ea95ca975eba658869",
+      "resolved": "git+https://git@github.com/fresheneesz/deadunit.git#3ac862e0c2646df969e5e5ea95ca975eba658869",
+      "dependencies": {
+        "stack-trace": {
+          "version": "0.0.7",
+          "from": "stack-trace@"
         }
       }
     }

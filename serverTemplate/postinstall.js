@@ -27,32 +27,44 @@ Fiber(function() {
     var installComponents = basePath+"installComponents/"
     var shrinkwrapFile = "npm-shrinkwrap.json"
 
-    var jobs = [
-        //overwriteComponent("package.json"), //...
-        //overwriteComponent(shrinkwrapFile), //already done in preinstall.js
+    var futures = [
         installComponentAndLog("configuration.js")
     ]
 
+    var futureyStreams = {}
+
     // create symlink shortcut for nodejsUtils ('bt' for short)
-    if(!fs.existsSync(installDirectory+"node_modules/bt"))
-        jobs.push(install.symlink(installDirectory+"node_modules/nodejsUtils", installDirectory+"node_modules/bt"))
+    if(!fs.existsSync(installDirectory+"node_modules/bt")) {
+        var installingSymlink = futureyStreams['installing symlink'] = install.symlink(installDirectory+"node_modules/nodejsUtils", installDirectory+"node_modules/bt")
+        installingSymlink.stdout.pipe(process.stdout)
+        installingSymlink.stderr.pipe(process.stderr)
+    }
 
-    jobs.push(installGlobalModule(moduleLocation("forever", true), /*version*/'0.10.8'))
+    futureyStreams['installing forever'] = installGlobalModule(moduleLocation("forever", true), /*version*/'0.10.8')
 
-    jobs.push(install.folder(installDirectory+'log'))
+    futures.push(install.folder(installDirectory+'log'))
+
 
     // output results as they come in
-    for(var n in jobs) { var v = jobs[n]
-        if(v)
+    for(var n in futures) { var v = futures[n]
+        if(v) {
             v.resolve(function(err, x) {
                utils.log(JSON.stringify(x))
             })
+        }
     }
 
     // wait for the results
-    for(var n in jobs) { var v = jobs[n]
+    for(var n in futures) { var v = futures[n]
         if(v) v.wait()
     }
+    for(var n in futureyStreams) { var v = futureyStreams[n]
+        if(v) {
+            if(v.wait() !== 0) throw Error("Non-zero result from "+n)
+        }
+    }
+
+
 
     if(npmInstallNew(installDirectory)) {
         utils.log("executing npm shrinkwrap")
@@ -62,7 +74,6 @@ Fiber(function() {
         var destination = installComponents+shrinkwrapFile
         utils.log(JSON.stringify(install.cp(source, destination).wait()))   // copy the new shrinkwrap to the installComponents directory
     }
-
 
     // \/functions\/
 

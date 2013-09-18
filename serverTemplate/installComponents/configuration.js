@@ -17,16 +17,15 @@ var config = {
 
     logToConsole: false // change this for local development
 }
-/*
+
 config.elasticsearch = {
     read: {
-        location: "__urlOfDatabase__",
-        db: "entefy",
-        user: "__yourUser__",
-        password: "__yourPassword__"
+        host: "__urlOfDatabase__",
+        port: 9200,
+        secure: false
     }
 }
 config.elasticsearch.write = config.elasticsearch.read
-*/
+
 
 utils.merge(exports, config)

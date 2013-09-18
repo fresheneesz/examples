@@ -1,4 +1,4 @@
-serverTemplate
-=======
+Entefy's Backend
+================
 
-A skeleton for a node.js project. This is released open source with the MIT LICENCE - free for any use.
+Go here to get instructions on how to install this: http://tools.entefy.com/display/CB/Project+Installation
